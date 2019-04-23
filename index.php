@@ -19,10 +19,21 @@ spl_autoload_register(function ($class) {
     require LBS . $class . ".php";
   }
 });
+require 'Controllers/Error.php';
+$error = new Errors();
 //$obj = new Controller();
 //echo $controller . " /" . $method;
 $controllersPath = "Controllers/" . $controller . ".php";
 if (file_exists($controllersPath)) {
   require $controllersPath;
   $controller = new $controller();
+  if (isset($method)) {
+    if (method_exists($controller, $method)) {
+      $controller->{$method}();
+    } else {
+      $error->error();
+    }
+  }
+} else {
+  $error->error();
 }
