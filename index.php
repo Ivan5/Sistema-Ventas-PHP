@@ -14,6 +14,15 @@ if (isset($url[1])) {
   }
 }
 
-spl_autoload_register(function ($class) { });
-
-echo $controller . " /" . $method;
+spl_autoload_register(function ($class) {
+  if (file_exists(LBS . $class . ".php")) {
+    require LBS . $class . ".php";
+  }
+});
+//$obj = new Controller();
+//echo $controller . " /" . $method;
+$controllersPath = "Controllers/" . $controller . ".php";
+if (file_exists($controllersPath)) {
+  require $controllersPath;
+  $controller = new $controller();
+}
