@@ -8,6 +8,6 @@ class Index_model
 
   public function indexModel()
   {
-    echo "Metodo Index model";
+    
   }
 }
