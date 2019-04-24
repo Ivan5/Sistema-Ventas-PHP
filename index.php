@@ -30,8 +30,6 @@ if (file_exists($controllersPath)) {
   if (isset($method)) {
     if (method_exists($controller, $method)) {
       $controller->{$method}();
-    } else {
-      $error->error();
     }
   }
 } else {
